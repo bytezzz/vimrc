@@ -311,3 +311,4 @@ filetype plugin on
 set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
+set cinoptions +=g0
