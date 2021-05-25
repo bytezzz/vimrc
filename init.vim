@@ -3,6 +3,9 @@
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 Plug 'Raimondi/delimitMate'
+Plug 'Chiel92/vim-autoformat'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
 let delimitMate_expand_cr=1
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 " Code completion.
@@ -131,6 +134,8 @@ elseif &filetype == 'cpp'
 exec "!clang++ -std=c++11 % -o %<"
 exec "!time ./%<"
 exec "!rm %<"
+elseif &filetype == 'ruby'
+exec "!time ruby %"
 elseif &filetype == 'java'
 exec "!javac %"
 exec "!time java %<"
