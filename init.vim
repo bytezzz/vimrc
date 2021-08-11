@@ -3,7 +3,6 @@
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 Plug 'Raimondi/delimitMate'
-Plug 'Chiel92/vim-autoformat'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 let delimitMate_expand_cr=1
@@ -36,8 +35,6 @@ Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Switch between windows quickly.
-Plug 'christoomey/vim-tmux-navigator'
 
 " colorscheme
 Plug 'morhetz/gruvbox'
@@ -47,8 +44,6 @@ Plug 'easymotion/vim-easymotion'
 " Auto generate documentation.
 Plug 'kkoomen/vim-doge'
 
-" Easy align.
-Plug 'junegunn/vim-easy-align'
 
 " Rainbow bracket to make bracket more readable.
 Plug 'luochen1990/rainbow'
@@ -88,16 +83,6 @@ call plug#end()
 " qucik cscope
 let g:quickr_cscope_keymaps = 0
 nmap <C-s>c <plug>(quickr_cscope_callers)
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-easy-align settings.
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fzf settings.
@@ -286,7 +271,18 @@ function HeaderPython()
     normal o
 endf
 
+function HeaderRuby()
+    call setline(1, "#!/usr/bin/env ruby")
+    call append(1, "# encoding: UTF-8")
+    call append(2, "# Higgs @ " . strftime('%Y-%m-%d %T', localtime()))
+    call setline(4, "")
+    normal G
+    normal o
+endf
+
+
 autocmd bufnewfile *.py call HeaderPython()
+autocmd bufnewfile *.rb call HeaderRuby()
 " Highlight the symbol and its references when holding the cursor.
 "autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -296,6 +292,8 @@ autocmd bufnewfile *.py call HeaderPython()
 " Needless for me.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
